@@ -14,6 +14,7 @@ class Group(models.Model):
 
 
 class Post(models.Model):
+    ordering = ['-pub_date']
     text = models.TextField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -25,5 +26,5 @@ class Post(models.Model):
         Group,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
-    )
+        on_delete=models.SET_NULL,
+        related_name='posts')

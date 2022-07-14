@@ -1,13 +1,15 @@
 {% extends  'base.html' %}
 
-{%block title %}
-<title>{{title}}</title>
-{% endblock title %}
-
-
+<title>
+  {% block title %}
+  {{ group }}
+  {% endblock title %}
+</title>
+    
 {% block content %}
+
       <div class="container">     
-        <h1>Лев Толстой – зеркало русской революции.</h1>
+        <h1>{{ group }}</h1> 
         <article>
           {% for post in posts %}
           <ul>
@@ -21,8 +23,9 @@
           <p>{{ post.text }}</p>
           </p>
           {% if not forloop.last %}<hr>{% endif %}
-        {% endfor %} 
+        {% endfor %}  
         </article>
         <!-- под последним постом нет линии -->
       </div>  
   {% endblock content %}
+  
