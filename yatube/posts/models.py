@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+Number_of_posts = 10
 
 
 class Group(models.Model):
@@ -14,7 +15,9 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    ordering = ['-pub_date']
+    class Meta:
+        ordering = ['-pub_date']
+
     text = models.TextField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
