@@ -1,0 +1,28 @@
+{% extends  'base.html' %}
+
+{% block title %}
+    Профайл пользователя {{ username }}
+    {% endblock title %} 
+
+    {% block content %}
+      <div class="container py-5">        
+        <h1>Все посты пользователя {{ username }} </h1>
+        <h3>Всего постов: {{ count_page }} </h3>   
+        <article>
+            {% for post in page_obj %}
+            <ul>
+              <li>
+                Дата публикации: {{ post.pub_date|date:"d E Y"}}
+              </li>
+            </ul>      
+            <p>{{ post.text }}</p>
+            </p>
+            {% if not forloop.last %}<hr>{% endif %}
+          {% endfor %}  
+        </article>       
+        <a href="{% url "posts:index" %}">главная страница</a>        
+        <hr>
+        <!-- Остальные посты. после последнего нет черты -->
+        <!-- Здесь подключён паджинатор -->  
+        {% include 'includes/paginator.html' %}
+    {% endblock content %}

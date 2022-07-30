@@ -1,11 +1,10 @@
 {% extends "base.html" %} 
 
-
 {% block content %}
       <div class="container py-5">     
         <h1>Последние обновления на сайте</h1>
         <article>
-          {% for post in posts %}
+          {% for post in page_obj %}
           <ul>
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -20,8 +19,9 @@
           <a href="{% url "posts:gr_list" post.group.slug %}">все записи группы</a>
           {% endif %} 
           {% if not forloop.last %}<hr>{% endif %}
-        {% endfor %} 
+        {% endfor %}
         </article>
+        {% include 'includes/paginator.html' %}
         <!-- под последним постом нет линии -->
-      </div>  
+      </div> 
   {% endblock content %}

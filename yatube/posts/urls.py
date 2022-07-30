@@ -1,9 +1,14 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'posts'
 
 urlpatterns = [
-    path('', views.index, name='index_list'),
-    path('group/<slug:slug>/', views.group_posts, name='gr_list')
+    path('', views.index, name='index'),
+    path('group/<slug:slug>/', views.group_posts, name='gr_list'),
+    path('about/', include('about.urls', namespace='about')),
+    # Профайл пользователя
+    path('profile/<str:username>/', views.profile, name='profile'),
+    # Просмотр записи
+    #path('posts/<int:post_id>/', views.post_detail, name='post_detail'),
 ]
